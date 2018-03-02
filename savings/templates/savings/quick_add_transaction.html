@@ -1,0 +1,31 @@
+{% comment %} {% extends "base_generic.html" %} {% endcomment %}
+{% block content %}
+
+    <h1>Quick-add transaction</h1>
+
+    {% if return_state.state == 'error' %}
+    <div class="error">
+        <p><strong>{{ return_state.title }}</strong></p>
+        <p>{{ return_state.body }}</p>
+    </div>
+    {% elif return_state.state == 'success' %}
+    <div class="success">
+        <p><strong>{{ return_state.title }}</strong></p>
+        <p>{{ return_state.body }}</p>
+    </div>
+    {% endif %}
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+        {{ form }}
+        </table>
+        <input type="submit" value="Add Transaction" />
+    </form>
+
+{% endblock %}
+
+
+
+
+

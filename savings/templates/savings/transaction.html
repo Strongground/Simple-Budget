@@ -1,0 +1,20 @@
+<a href="/savings/">Back</a>
+<h1>Budget Planner App</h1>
+
+{% if return_state.state == 'error' %}
+    <div class="error">
+        <p><strong>{{ return_state.title }}</strong></p>
+        <p>{{ return_state.body }}</p>
+    </div>
+{% elif return_state.state == 'success' %}
+    <div class="success">
+        <p><strong>{{ return_state.title }}</strong></p>
+        <p>{{ return_state.body }}</p>
+    </div>
+{% endif %}
+
+<h2>Transaction View</h2>
+
+<ul class="transaction-list">
+    <li>{{ transaction }}</li>
+</ul>
