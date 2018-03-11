@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import include
 from . import views
 
 urlpatterns = [
@@ -16,5 +17,8 @@ urlpatterns = [
 
     # Allow for quick adding a transaction without some details, but sufficient for fast
     # adding when on mobile. Takes no arguments.
-    path('quick_add_transaction', views.quick_add_transaction)
+    path('quick_add_transaction', views.quick_add_transaction),
+
+    # Add auth urls from Django
+    path('user/', include('django.contrib.auth.urls'))
 ]

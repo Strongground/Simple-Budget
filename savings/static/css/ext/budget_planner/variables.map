@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "../sass/variables.css",
+	"sources": [
+		"../sass/variables.scss"
+	],
+	"sourcesContent": [
+		"$icomoon-font-path: \"fonts\" !default;\n\n$icon-airplane: \\e900;\n$icon-android: \\e901;\n$icon-card: \\e902;\n$icon-babymilk: \\e903;\n$icon-bag: \\e904;\n$icon-balloon: \\e905;\n$icon-bandage: \\e906;\n$icon-bikini: \\e907;\n$icon-birthday-cake: \\e908;\n$icon-bread: \\e909;\n$icon-call: \\e90a;\n$icon-can-water: \\e90b;\n$icon-car: \\e90c;\n$icon-chair: \\e90d;\n$icon-chart: \\e90e;\n$icon-christmas: \\e90f;\n$icon-cocktail: \\e910;\n$icon-control-pad: \\e911;\n$icon-muffin: \\e912;\n$icon-tool: \\e913;\n$icon-faucet: \\e914;\n$icon-first-aid: \\e915;\n$icon-shoe: \\e916;\n$icon-ice: \\e917;\n$icon-pool: \\e918;\n$icon-light-bulb: \\e919;\n$icon-mask: \\e91a;\n$icon-mobile: \\e91b;\n$icon-music: \\e91c;\n$icon-piggy-bank: \\e91d;\n$icon-pizza: \\e91e;\n$icon-sewing-machine: \\e91f;\n$icon-sign-board: \\e920;\n$icon-smartphone: \\e921;\n$icon-sock: \\e922;\n$icon-spoon-fork: \\e923;\n$icon-store: \\e924;\n$icon-transport: \\e925;\n$icon-tooth: \\e926;\n$icon-train: \\e927;\n$icon-cart: \\e928;\n$icon-repair: \\e929;\n\n"
+	],
+	"mappings": "",
+	"names": []
+}

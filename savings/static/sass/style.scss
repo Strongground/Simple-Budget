@@ -1,0 +1,242 @@
+@import "variables";
+
+@font-face {
+  font-family: 'simple_budget';
+  src:
+    url('#{$icomoon-font-path}/simple_budget.ttf?582a1l') format('truetype'),
+    url('#{$icomoon-font-path}/simple_budget.woff?582a1l') format('woff'),
+    url('#{$icomoon-font-path}/simple_budget.svg?582a1l#simple_budget') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'simple_budget' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@function unicode($str) {
+  @return unquote("\"") + $str + unquote("\"");
+}
+
+.icon-airplane {
+  &:before {
+    content: unicode($icon-airplane); 
+  }
+}
+.icon-android {
+  &:before {
+    content: unicode($icon-android); 
+  }
+}
+.icon-card {
+  &:before {
+    content: unicode($icon-card); 
+  }
+}
+.icon-babymilk {
+  &:before {
+    content: unicode($icon-babymilk); 
+  }
+}
+.icon-bag {
+  &:before {
+    content: unicode($icon-bag); 
+  }
+}
+.icon-balloon {
+  &:before {
+    content: unicode($icon-balloon); 
+  }
+}
+.icon-bandage {
+  &:before {
+    content: unicode($icon-bandage);     
+  }
+}
+.icon-bikini {
+  &:before {
+    content: unicode($icon-bikini); 
+  }
+}
+.icon-birthday-cake {
+  &:before {
+    content: unicode($icon-birthday-cake); 
+  }
+}
+.icon-bread {
+  &:before {
+    content: unicode($icon-bread); 
+  }
+}
+.icon-call {
+  &:before {
+    content: unicode($icon-call); 
+  }
+}
+.icon-can-water {
+  &:before {
+    content: unicode($icon-can-water); 
+  }
+}
+.icon-car {
+  &:before {
+    content: unicode($icon-car); 
+  }
+}
+.icon-chair {
+  &:before {
+    content: unicode($icon-chair); 
+  }
+}
+.icon-chart {
+  &:before {
+    content: unicode($icon-chart); 
+  }
+}
+.icon-christmas {
+  &:before {
+    content: unicode($icon-christmas); 
+  }
+}
+.icon-cocktail {
+  &:before {
+    content: unicode($icon-cocktail); 
+  }
+}
+.icon-control-pad {
+  &:before {
+    content: unicode($icon-control-pad); 
+  }
+}
+.icon-muffin {
+  &:before {
+    content: unicode($icon-muffin); 
+  }
+}
+.icon-tool {
+  &:before {
+    content: unicode($icon-tool); 
+  }
+}
+.icon-faucet {
+  &:before {
+    content: unicode($icon-faucet); 
+  }
+}
+.icon-first-aid {
+  &:before {
+    content: unicode($icon-first-aid); 
+  }
+}
+.icon-shoe {
+  &:before {
+    content: unicode($icon-shoe); 
+  }
+}
+.icon-ice {
+  &:before {
+    content: unicode($icon-ice); 
+  }
+}
+.icon-pool {
+  &:before {
+    content: unicode($icon-pool); 
+  }
+}
+.icon-light-bulb {
+  &:before {
+    content: unicode($icon-light-bulb); 
+  }
+}
+.icon-mask {
+  &:before {
+    content: unicode($icon-mask); 
+  }
+}
+.icon-mobile {
+  &:before {
+    content: unicode($icon-mobile); 
+  }
+}
+.icon-music {
+  &:before {
+    content: unicode($icon-music); 
+  }
+}
+.icon-piggy-bank {
+  &:before {
+    content: unicode($icon-piggy-bank); 
+  }
+}
+.icon-pizza {
+  &:before {
+    content: unicode($icon-pizza); 
+  }
+}
+.icon-sewing-machine {
+  &:before {
+    content: unicode($icon-sewing-machine); 
+  }
+}
+.icon-sign-board {
+  &:before {
+    content: unicode($icon-sign-board); 
+  }
+}
+.icon-smartphone {
+  &:before {
+    content: unicode($icon-smartphone); 
+  }
+}
+.icon-sock {
+  &:before {
+    content: unicode($icon-sock); 
+  }
+}
+.icon-spoon-fork {
+  &:before {
+    content: unicode($icon-spoon-fork); 
+  }
+}
+.icon-store {
+  &:before {
+    content: unicode($icon-store); 
+  }
+}
+.icon-transport {
+  &:before {
+    content: unicode($icon-transport); 
+  }
+}
+.icon-tooth {
+  &:before {
+    content: unicode($icon-tooth); 
+  }
+}
+.icon-train {
+  &:before {
+    content: unicode($icon-train); 
+  }
+}
+.icon-cart {
+  &:before {
+    content: unicode($icon-cart); 
+  }
+}
+.icon-repair {
+  &:before {
+    content: unicode($icon-repair); 
+  }
+}
+

@@ -1,0 +1,133 @@
+$main-color: rgb(87, 24, 142);
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+svg-icon {
+  height: 64px;
+  width: 64px;
+  margin: 10px;
+}
+
+body > .container {
+  padding-top: 60px;
+  font-weight: 300;
+  h2 {
+    font-weight: 200;
+    font-style: italic;
+    font-size: 17pt;
+  }
+}
+
+header {
+  background-color: $main-color;
+  color: white;
+  overflow: hidden;
+  padding: 10px;
+  a, a:hover {
+    color: white;
+    text-decoration: none;
+  }
+  h1 {
+    float: left;
+    font-size: 15pt;
+    font-weight: 300;
+    font-style: italic;
+    width: 20%;
+    margin: 0;
+    padding-left: 42px;
+    line-height: 170%;
+    background-size: 17%;
+    background-repeat: no-repeat;
+  }
+  .userinfo {
+    color: white;
+    font-size: 12pt;
+    float: right;
+    width: 50%;
+    text-align: right;
+    padding-right: 3%;
+    p {
+      margin: 0;
+    }
+    a {
+      color: white;
+    }
+  }
+}
+
+.logo-container {
+  .logo-claim {
+    font-weight: 300;
+    font-style: italic;
+    font-size: 27pt;
+    margin-bottom: 10px;
+  }
+}
+
+// Login form
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  .checkbox {
+    font-weight: 400;
+  }
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+table {
+  &.transactions {
+    .badge.badge-pill {
+      font-size: 100%;
+      font-weight: 400;
+    }
+  }
+}
+
+#quick_add_transaction {
+  font-size: 800%;
+  font-weight: 200;
+  color: white;
+  border-radius: 50% 50%;
+  background-color: $main-color;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 100px;
+  height: 100px;
+  padding-left: 9pt;
+  line-height: 68%;
+  text-decoration: none;
+  transition: transform 0.35s ease-in-out;
+  &:hover {
+    transform: rotate(135deg)
+  }
+  .menu {
+    .entry {
+      border-radius: 50% 50%;
+
+    }
+  }
+}

@@ -27,7 +27,6 @@ def transaction(request, transaction_id):
     return render(request, 'savings/transaction.html', context)
 
 def quick_add_transaction(request):
-    current_user = User.objects.get(username='noel')
     if request.method == 'POST':
         # Assume submitted form, validate
         form = QuickTransactionAdd(request.POST)
@@ -46,16 +45,21 @@ def quick_add_transaction(request):
             form_state = create_message('success', 'Success!', 'Successfully created transaction.')
         else:
             form_state = create_message('error', 'Error!', 'There was an error while creating the transaction.')
-        transaction_object = get_object_or_404(Transaction, id=transaction.id)
+        
         context = {
             'return_state': form_state,
-            'transaction': transaction_object
+            'account_object': transaction.account
         }
-        return render(request, 'savings/transaction.html', context)
+        return render(request, 'savings/account.html', context)
     else:
         # Assume initial rendering
+        if request.user.is_authenticated:
+            user_default_account = request.user.profile.default_account
+        else:
+            user_default_account = None
+
         context = {
-            'form': QuickTransactionAdd(initial={'account': current_user.profile.default_account})
+            'form': QuickTransactionAdd(initial={'account': user_default_account})
         }
         return render(request, 'savings/quick_add_transaction.html', context)
 

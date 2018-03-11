@@ -1,8 +1,11 @@
-{% comment %} {% extends "base_generic.html" %} {% endcomment %}
+{% extends "frame.html" %}
+
 {% block content %}
+{% load static %}
+
+    <p class="icon-cocktail">Yeah bitches, party time!</p>
 
     <h1>Quick-add transaction</h1>
-
     {% if return_state.state == 'error' %}
     <div class="error">
         <p><strong>{{ return_state.title }}</strong></p>
@@ -24,8 +27,3 @@
     </form>
 
 {% endblock %}
-
-
-
-
-

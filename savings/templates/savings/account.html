@@ -1,32 +1,39 @@
-<a href="/savings/">Back</a>
-<h1>Budget Planner App</h1>
+{% extends "frame.html" %}
+
+{% block content %}
+
 {% if transactions %}
     <h2>Transactions of {{account}}</h2>
     
-    <ul class="transaction-list">
-        <table border="1">
+    <table class="table table-striped transactions">
+        <thead>
             <tr>
-                <th>Category</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Date</th>
+                <th class="text-left">Date</th>
+                <th class="text-left">Category</th>
+                <th class="text-left">Description</th>
+                <th class="text-left">Amount</th>
             </tr>
-            
-        {% for transaction in transactions %}
+        </thead>
+        
+        <tbody>
+            {% for transaction in transactions %}
+                <tr class="transaction">
+                    <td>{{transaction.date}}</td>
+                    <td>{{transaction.category}}</td>
+                    <td><a href="/savings/transaction/{{ transaction.id }}">{{transaction.description}}</a></td>
+                    <td><span class="badge badge-pill {% if not transaction.is_spending %} badge-success{% else %} badge-danger{% endif %}">{{transaction.amount}} €</span></td>
+                </tr>
+            {% endfor %}
             <tr>
-                <td>{{transaction.category}}</td>
-                <td><a href="/savings/transaction/{{ transaction.id }}">{{transaction.description}}</a></td>
-                <td {% if not transaction.is_spending %}class="positive"{% endif %}>{% if transaction.is_spending %}-{% endif %}{{transaction.amount}}</td>
-                <td>{{transaction.date}}</td>
+                <th colspan="2"></th>
+                <th class="text-left">Balance</th>
+                <th class="text-left">{{account.balance}} €</th>
             </tr>
-        {% endfor %}
-            <tr>
-                <th colspan="2" style="text-align: right">Sum</th>
-                <th>{{account.balance}}</th>
-                <th></th>
-            </tr>
-        </table>
+        </tbody>
+    </table>
 
 {% else %}
     <p>No transactions yet in this account.</p>
 {% endif %}
+
+{% endblock %}

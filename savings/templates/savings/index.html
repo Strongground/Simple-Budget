@@ -1,22 +1,37 @@
-<h1>Budget Planner App</h1>
+{% extends "frame.html" %}
+{% load static %}
+
+{% block content %}
+
 {% if account_list %}
     <h2>Accounts</h2>
-    <ul class="account-list">
-    {% for account in account_list %}
-
-        <li class="account">
-            <a class="name" href="account/{{ account.id }}">{{ account.name }} 
-            {% if account.owner is not None %} 
-                ({{ account.owner }})
-            {% endif %}
-            </a>
-            <p class="balance{% if account.balance >= 0 %} positive{% endif %}">
-                {{ account.balance }}
-            </p>
-        </li>
-
-    {% endfor %}
-    </ul>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-left">Account name</th>
+                <th class="text-left">Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in account_list %}
+            <tr>
+                <td>
+                    <a class="name" href="account/{{ account.id }}">
+                        <img class="bank-logo" src="/{{ account.bank.logo.url }}" width="50" height="50" />
+                        <span>{{ account.name }}</span>
+                    </a>
+                </td>
+                <td>
+                    <p class="balance{% if account.balance >= 0 %} positive{% endif %}">
+                        {{ account.balance }}
+                    </p>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% else %}
     <p>No accounts created yet.</p>
 {% endif %}
+
+{% endblock %}

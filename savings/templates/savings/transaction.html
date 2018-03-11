@@ -1,5 +1,6 @@
-<a href="/savings/">Back</a>
-<h1>Budget Planner App</h1>
+{% extends "frame.html" %}
+
+{% block content %}
 
 {% if return_state.state == 'error' %}
     <div class="error">
@@ -18,3 +19,5 @@
 <ul class="transaction-list">
     <li>{{ transaction }}</li>
 </ul>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 from datetime import date
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 User = get_user_model()
@@ -15,7 +15,7 @@ class Profile(models.Model):
 
 class Bank(models.Model):
     name = models.CharField(max_length=100)
-    logo = models.FileField(default='bank_logos/default.png', upload_to='bank_logos/') # This will be implemented later
+    logo = models.ImageField(default='static/images/bank_logos/default.png', upload_to='static/images/bank_logos/')
     def __str__(self):
         return self.name
 
@@ -26,12 +26,18 @@ class Account(models.Model):
     bank = models.ForeignKey(Bank, on_delete=models.SET_NULL, blank=True, null=True)
     def __str__(self):
         return self.name
-    def update(self, single_transaction=None):
+    def update(self, single_transaction=None, reverse=False):
         if single_transaction:
             if single_transaction.is_spending:
-                self.balance -= single_transaction.amount
+                if reverse:
+                    self.balance += single_transaction.amount
+                else:
+                    self.balance -= single_transaction.amount
             else:
-                self.balance += single_transaction.amount
+                if reverse:
+                    self.balance -= single_transaction.amount
+                else:
+                    self.balance += single_transaction.amount
         else:
             transactions = Transaction.objects.get(account__self)
             new_balance = 0
@@ -45,7 +51,7 @@ class Account(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    logo = models.FileField(default='category_icons/default.png', upload_to='category_icons/') # This will be implemented later
+    logo = models.CharField(max_length=1) # This references a character in a icon set
     def __str__(self):
         return self.name
 
@@ -59,7 +65,7 @@ class Transaction(models.Model):
     recurring = models.BooleanField(default=False)
     repeat_time = models.DurationField(blank=True, null=True)
     def __str__(self):
-        return self.description + ': ' + str(self.amount)
+        return self.description + ': ' + str(self.amount) + '€'
 
 # Receivers
 @receiver(post_save, sender=User)
@@ -75,3 +81,7 @@ def save_user_profile(sender, instance, **kwargs):
 def update_account(sender, instance, created, **kwargs):
     if created:
         instance.account.update(instance)
+
+@receiver(post_delete, sender=Transaction)
+def update_account_on_deletion(sender, instance, **kwargs): 
+    instance.account.update(instance, reverse=True)

@@ -1,0 +1,15 @@
+{% extends "frame.html" %}
+
+{% block content %}
+
+<div class="text-center">
+  {% load static %}
+  <div class="mb-4 logo-container">
+    <img src="{% static 'images/simplelogo.png' %}" alt="Simple Budget" width="150" height="150">
+    <p class="logo-claim">Simple Budget</p>
+  </div>
+
+  <h2>You have logged out</h2>
+</div>
+
+{% endblock %}

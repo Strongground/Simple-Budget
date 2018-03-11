@@ -1,0 +1,233 @@
+@font-face {
+  font-family: 'simple_budget';
+  src: url("fonts/simple_budget.ttf?582a1l") format("truetype"), url("fonts/simple_budget.woff?582a1l") format("woff"), url("fonts/simple_budget.svg?582a1l#simple_budget") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 13, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'simple_budget' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 33, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-airplane:before {
+  content: "\e900";
+}
+
+/* line 38, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-android:before {
+  content: "\e901";
+}
+
+/* line 43, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-card:before {
+  content: "\e902";
+}
+
+/* line 48, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-babymilk:before {
+  content: "\e903";
+}
+
+/* line 53, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-bag:before {
+  content: "\e904";
+}
+
+/* line 58, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-balloon:before {
+  content: "\e905";
+}
+
+/* line 63, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-bandage:before {
+  content: "\e906";
+}
+
+/* line 68, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-bikini:before {
+  content: "\e907";
+}
+
+/* line 73, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-birthday-cake:before {
+  content: "\e908";
+}
+
+/* line 78, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-bread:before {
+  content: "\e909";
+}
+
+/* line 83, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-call:before {
+  content: "\e90a";
+}
+
+/* line 88, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-can-water:before {
+  content: "\e90b";
+}
+
+/* line 93, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-car:before {
+  content: "\e90c";
+}
+
+/* line 98, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-chair:before {
+  content: "\e90d";
+}
+
+/* line 103, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-chart:before {
+  content: "\e90e";
+}
+
+/* line 108, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-christmas:before {
+  content: "\e90f";
+}
+
+/* line 113, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-cocktail:before {
+  content: "\e910";
+}
+
+/* line 118, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-control-pad:before {
+  content: "\e911";
+}
+
+/* line 123, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-muffin:before {
+  content: "\e912";
+}
+
+/* line 128, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-tool:before {
+  content: "\e913";
+}
+
+/* line 133, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-faucet:before {
+  content: "\e914";
+}
+
+/* line 138, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-first-aid:before {
+  content: "\e915";
+}
+
+/* line 143, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-shoe:before {
+  content: "\e916";
+}
+
+/* line 148, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-ice:before {
+  content: "\e917";
+}
+
+/* line 153, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-pool:before {
+  content: "\e918";
+}
+
+/* line 158, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-light-bulb:before {
+  content: "\e919";
+}
+
+/* line 163, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-mask:before {
+  content: "\e91a";
+}
+
+/* line 168, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-mobile:before {
+  content: "\e91b";
+}
+
+/* line 173, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-music:before {
+  content: "\e91c";
+}
+
+/* line 178, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-piggy-bank:before {
+  content: "\e91d";
+}
+
+/* line 183, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-pizza:before {
+  content: "\e91e";
+}
+
+/* line 188, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-sewing-machine:before {
+  content: "\e91f";
+}
+
+/* line 193, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-sign-board:before {
+  content: "\e920";
+}
+
+/* line 198, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-smartphone:before {
+  content: "\e921";
+}
+
+/* line 203, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-sock:before {
+  content: "\e922";
+}
+
+/* line 208, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-spoon-fork:before {
+  content: "\e923";
+}
+
+/* line 213, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-store:before {
+  content: "\e924";
+}
+
+/* line 218, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-transport:before {
+  content: "\e925";
+}
+
+/* line 223, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-tooth:before {
+  content: "\e926";
+}
+
+/* line 228, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-train:before {
+  content: "\e927";
+}
+
+/* line 233, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-cart:before {
+  content: "\e928";
+}
+
+/* line 238, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/style.scss */
+.icon-repair:before {
+  content: "\e929";
+}
+
+/*# sourceMappingURL=style.map */

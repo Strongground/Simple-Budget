@@ -1,0 +1,50 @@
+{% extends "frame.html" %}
+
+{% block content %}
+
+  <form method="post" action="{% url 'login' %}" class="form-signin text-center">
+    {% csrf_token %}
+
+    {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+        Your username and password didn't match. Please try again.
+      </div>
+    {% endif %}
+
+    {% if next %}
+      {% if user.is_authenticated %}
+        <div class="alert alert-warning" role="alert">
+          Your account doesn't have access to this page. To proceed, please login with an account that has access.
+        </div>
+      {% else %}
+        <div class="alert alert-info" role="alert">
+          Please login to see this page.
+        </div>
+      {% endif %}
+    {% endif %}
+    
+    {% load static %}
+    <div class="mb-4 logo-container">
+      <img src="{% static 'images/simplelogo.png' %}" alt="Simple Budget" width="150" height="150">
+      <p class="logo-claim">Simple Budget</p>
+    </div>
+    
+    <h2 class="h3 mb-3 font-weight-normal">Please sign in</h2>
+    
+    <input type="text" name="{{form.username.name}}" id="inputEmail id_username" class="form-control" placeholder="{{form.username.label}}" required="" autofocus="">
+    <input type="password" name="{{form.password.name}}" id="inputPassword id_password" class="form-control" placeholder="{{form.password.label}}" required="">
+    
+    <input type="hidden" name="next" value="{{ next }}" />
+    <button value="login" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    
+  </form>
+  
+  {# Assumes you setup the password_reset view in your URLconf #}
+  {% comment %} <p><a href="{% url 'password_reset' %}">Lost password?</a></p> {% endcomment %}
+  
+{% endblock %}
+  
+  
+  
+  
+  
