@@ -3,9 +3,9 @@
 @font-face {
   font-family: 'simple_budget';
   src:
-    url('#{$icomoon-font-path}/simple_budget.ttf?582a1l') format('truetype'),
-    url('#{$icomoon-font-path}/simple_budget.woff?582a1l') format('woff'),
-    url('#{$icomoon-font-path}/simple_budget.svg?582a1l#simple_budget') format('svg');
+    url('#{$icomoon-font-path}/simple_budget.ttf?ioswjy') format('truetype'),
+    url('#{$icomoon-font-path}/simple_budget.woff?ioswjy') format('woff'),
+    url('#{$icomoon-font-path}/simple_budget.svg?ioswjy#simple_budget') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -29,6 +29,11 @@
   @return unquote("\"") + $str + unquote("\"");
 }
 
+.icon-simple-budget {
+  &:before {
+    content: unicode($icon-simple-budget);     
+  }
+}
 .icon-airplane {
   &:before {
     content: unicode($icon-airplane); 

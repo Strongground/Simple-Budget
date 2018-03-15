@@ -19,7 +19,7 @@
             {% for transaction in transactions %}
                 <tr class="transaction">
                     <td>{{transaction.date}}</td>
-                    <td>{{transaction.category}}</td>
+                    <td><p class="icon-{{transaction.category.get_icon}}" title="{{transaction.category}}" tooltip="{{transaction.category}}"></p></td>
                     <td><a href="/savings/transaction/{{ transaction.id }}">{{transaction.description}}</a></td>
                     <td><span class="badge badge-pill {% if not transaction.is_spending %} badge-success{% else %} badge-danger{% endif %}">{{transaction.amount}} €</span></td>
                 </tr>

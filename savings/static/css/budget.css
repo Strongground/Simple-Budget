@@ -1,43 +1,38 @@
-/* line 3, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 body {
   font-family: 'Lato', sans-serif;
 }
 
-/* line 7, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
-svg-icon {
-  height: 64px;
-  width: 64px;
-  margin: 10px;
-}
-
-/* line 13, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 body > .container {
-  padding-top: 60px;
+  padding-top: 80px;
   font-weight: 300;
 }
 
-/* line 16, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 body > .container h2 {
   font-weight: 200;
   font-style: italic;
   font-size: 17pt;
 }
 
-/* line 23, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
+[class^="icon-"], [class*=" icon-"] {
+  font-size: 15pt;
+  margin: 0;
+}
+
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: #57188e;
   color: white;
   overflow: hidden;
   padding: 10px;
 }
 
-/* line 28, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 header a, header a:hover {
   color: white;
   text-decoration: none;
 }
 
-/* line 32, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 header h1 {
   float: left;
   font-size: 15pt;
@@ -47,11 +42,10 @@ header h1 {
   margin: 0;
   padding-left: 42px;
   line-height: 170%;
-  background-size: 17%;
+  background-size: 33px;
   background-repeat: no-repeat;
 }
 
-/* line 44, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 header .userinfo {
   color: white;
   font-size: 12pt;
@@ -61,17 +55,14 @@ header .userinfo {
   padding-right: 3%;
 }
 
-/* line 51, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 header .userinfo p {
   margin: 0;
 }
 
-/* line 54, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 header .userinfo a {
   color: white;
 }
 
-/* line 61, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 .logo-container .logo-claim {
   font-weight: 300;
   font-style: italic;
@@ -79,7 +70,6 @@ header .userinfo a {
   margin-bottom: 10px;
 }
 
-/* line 70, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -87,12 +77,10 @@ header .userinfo a {
   margin: 0 auto;
 }
 
-/* line 75, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 .form-signin .checkbox {
   font-weight: 400;
 }
 
-/* line 79, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
@@ -101,39 +89,34 @@ header .userinfo a {
   font-size: 16px;
 }
 
-/* line 86, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 .form-signin .form-control:focus {
   z-index: 2;
 }
 
-/* line 89, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-/* line 94, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-/* line 102, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 table.transactions .badge.badge-pill {
   font-size: 100%;
   font-weight: 400;
 }
 
-/* line 109, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 #quick_add_transaction {
   font-size: 800%;
   font-weight: 200;
   color: white;
   border-radius: 50% 50%;
   background-color: #57188e;
-  position: absolute;
+  position: fixed;
   right: 10px;
   bottom: 10px;
   width: 100px;
@@ -144,14 +127,10 @@ table.transactions .badge.badge-pill {
   transition: transform 0.35s ease-in-out;
 }
 
-/* line 124, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 #quick_add_transaction:hover {
   transform: rotate(135deg);
 }
 
-/* line 128, /Users/noel/Library/Mobile Documents/com~apple~CloudDocs/Projekte/budget_app/savings/static/sass/budget.scss */
 #quick_add_transaction .menu .entry {
   border-radius: 50% 50%;
 }
-
-/*# sourceMappingURL=../css/budget.map */

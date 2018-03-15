@@ -5,6 +5,51 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 User = get_user_model()
+CATEGORY_ICON_CHOICES = (
+    ('airplane','icon-airplane'),
+    ('android','icon-android'),
+    ('card','icon-card'),
+    ('babymilk','icon-babymilk'),
+    ('bag','icon-bag'),
+    ('balloon','icon-balloon'),
+    ('bandage','icon-bandage'),
+    ('bikini','icon-bikini'),
+    ('birthday-cake','icon-birthday-cake'),
+    ('bread','icon-bread'),
+    ('call','icon-call'),
+    ('can-water','icon-can-water'),
+    ('car','icon-car'),
+    ('chair','icon-chair'),
+    ('chart','icon-chart'),
+    ('christmas','icon-christmas'),
+    ('cocktail','icon-cocktail'),
+    ('control-pad','icon-control-pad'),
+    ('muffin','icon-muffin'),
+    ('tool','icon-tool'),
+    ('faucet','icon-faucet'),
+    ('first-aid','icon-first-aid'),
+    ('shoe','icon-shoe'),
+    ('ice','icon-ice'),
+    ('pool','icon-pool'),
+    ('light-bulb','icon-light-bulb'),
+    ('mask','icon-mask'),
+    ('mobile','icon-mobile'),
+    ('music','icon-music'),
+    ('piggy-bank','icon-piggy-bank'),
+    ('pizza','icon-pizza'),
+    ('sewing-machine','icon-sewing-machine'),
+    ('sign-board','icon-sign-board'),
+    ('smartphone','icon-smartphone'),
+    ('sock','icon-sock'),
+    ('spoon-fork','icon-spoon-fork'),
+    ('store','icon-store'),
+    ('transport','icon-transport'),
+    ('tooth','icon-tooth'),
+    ('train','icon-train'),
+    ('cart','icon-cart'),
+    ('repair','icon-repair'),
+    ('default','icon-simple-budget')
+)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -51,9 +96,11 @@ class Account(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    logo = models.CharField(max_length=1) # This references a character in a icon set
+    icon_id = models.CharField(max_length=30, choices=CATEGORY_ICON_CHOICES, default='icon-simple-budget') # This references a class in a icon set
     def __str__(self):
         return self.name
+    def get_icon(self):
+        return self.icon_id
 
 class Transaction(models.Model):
     account = models.ForeignKey(Account, on_delete=models.SET_NULL, blank=True, null=True)
