@@ -1,15 +1,15 @@
 (function ($) {
   $.fn.initGUI = function () {
     // init dom
-    let quickAddButton = {}
-    quickAddButton.button = $('div.inputform')
+    let quickAddContainer = $('div.quick_add_container')
+    quickAddContainer['menuEntries'] = quickAddContainer.children('.entry')
+    let quickAddButton = []
+    quickAddButton['button'] = $('a.quick_add_transaction')
 
-    quickAddButton.initMenu = function () {
-      let noMenuItems = this.children('.entry').length
-    }
-
-    // count the menu items and add CSS
-    quickAddButton.initMenu
+    quickAddButton.addEventListener('hover', function () {
+      console.log('test')
+      quickAddContainer.addClass('active')
+    })
   }
 }(jQuery))
 console.log('gui module initialized')

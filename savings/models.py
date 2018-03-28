@@ -55,6 +55,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.FileField(default='avatars/default.png', upload_to='avatars/') # This is for later implementation due to complexity
     default_account = models.ForeignKey("Account", on_delete=models.SET_NULL, blank=True, null=True)
+    setting_max_transactions_days = models.IntegerField(default=10)
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name
 

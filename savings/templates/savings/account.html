@@ -4,30 +4,40 @@
 
 {% if transactions %}
     <h2>Transactions of {{account}}</h2>
-    
-    <table class="table table-striped transactions">
-        <thead>
-            <tr>
-                <th class="text-left">Date</th>
-                <th class="text-left">Category</th>
-                <th class="text-left">Description</th>
-                <th class="text-left">Amount</th>
-            </tr>
-        </thead>
-        
+
+    <div id="transactions_accordions">
+    {% for day in transactions  %}
+        <h3 class="btn btn-link" data-toggle="collapse" data-target="#day_transactions_{{ forloop.counter }}">
+            Transactions from {{ day.date }} ({{ day.sum_transactions }})
+        </h3>
+        <!-- Add 'data-parent="#transactions_accordions"' to enable only-one-open accordion behaviour -->
+        <div id="day_transactions_{{ forloop.counter }}" class="collapse{% if forloop.counter <= 2 %} show{% endif %}">
+            <table class="table table-striped transactions">
+                <thead>
+                    <tr>
+                        <th class="text-left">Category</th>
+                        <th class="text-left">Description</th>
+                        <th class="text-left">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in day.transactions %}
+                    <tr class="transaction">
+                        <td class="icon"><p class="icon-{% if not transaction.category or not transaction.category.icon_id %}simple-budget{% else %}{{transaction.category.get_icon}}{% endif %}" title="{{transaction.category}}" tooltip="{{transaction.category}}"></p></td>
+                        <td class="description"><a href="/savings/transaction/{{ transaction.id }}">{{transaction.description}}</a></td>
+                        <td class="amount"><span class="badge badge-pill {% if not transaction.is_spending %} badge-success{% else %} badge-danger{% endif %}">{{transaction.amount}} €</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+    </div>
+    <table class="table">
         <tbody>
-            {% for transaction in transactions %}
-                <tr class="transaction">
-                    <td>{{transaction.date}}</td>
-                    <td><p class="icon-{{transaction.category.get_icon}}" title="{{transaction.category}}" tooltip="{{transaction.category}}"></p></td>
-                    <td><a href="/savings/transaction/{{ transaction.id }}">{{transaction.description}}</a></td>
-                    <td><span class="badge badge-pill {% if not transaction.is_spending %} badge-success{% else %} badge-danger{% endif %}">{{transaction.amount}} €</span></td>
-                </tr>
-            {% endfor %}
-            <tr>
-                <th colspan="2"></th>
-                <th class="text-left">Balance</th>
-                <th class="text-left">{{account.balance}} €</th>
+            <tr class="balance">
+                <td style="width: 70%" class="text-left">Balance</td>
+                <td style="width: 30%" class="text-left balance">{{account.balance}} €</td>
             </tr>
         </tbody>
     </table>
@@ -37,3 +47,4 @@
 {% endif %}
 
 {% endblock %}
+

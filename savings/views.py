@@ -1,9 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from datetime import date, timedelta
+from django.contrib.auth import get_user_model
 
 from .models import Account, Transaction, User, Profile
 from .forms import QuickTransactionAdd
+
+User = get_user_model()
+USER_PREFERENCE_ACCOUNT_TRANSACTIONS_DAYS = 100
 
 def index(request):
     context = {
@@ -13,9 +18,21 @@ def index(request):
 
 def account(request, account_id):
     accountObj = get_object_or_404(Account, id=account_id)
+    end_date = date.today()
+    start_date = end_date - timedelta(days=USER_PREFERENCE_ACCOUNT_TRANSACTIONS_DAYS)
+    transactions = []
+    for iterator in range(0,USER_PREFERENCE_ACCOUNT_TRANSACTIONS_DAYS):
+        current_date = end_date - timedelta(days=iterator)
+        day_transactions = Transaction.objects.filter(account__id=account_id, date=current_date)
+        if day_transactions:
+            transactions.append({
+                'date': current_date,
+                'transactions': day_transactions,
+                'sum_transactions': len(day_transactions)
+            })
     context = {
         'account': accountObj,
-        'transactions': Transaction.objects.filter(account__id=account_id)
+        'transactions': transactions
     }
     return render(request, 'savings/account.html', context)
 
@@ -27,6 +44,7 @@ def transaction(request, transaction_id):
     return render(request, 'savings/transaction.html', context)
 
 def quick_add_transaction(request):
+    # @TODO Add some kind of protection against accidental reloading which creates another identical transaction
     if request.method == 'POST':
         # Assume submitted form, validate
         form = QuickTransactionAdd(request.POST)

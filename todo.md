@@ -5,11 +5,13 @@ This really needs a better name.
 The scope of this app is learning about going live with a real application that serves a frontend, has a backend and manages data in its own database.
 
 ## To-Dos
-- [x] Basics, like this document, commiting this to Github, creating some initial files etc.
-- [x] A script that will serve a CLI tool to start and manage the server
-- [ ] Frontend script, which will serve the templates and handle all and any input from the web, sanitizing etc.
-- [ ] Backend script to handle the connection to the database and actually calculate stuff and generally contain all the logic of the program
-- [x] A database (possibly a file based approach like in OpenDash, using Pythons 'shelf' module) (Nope, Django does that)
+- [] Page to modify categories
+    - [] Simple form to save new category
+    - [] Show list of existing icons by mapping of icon font character and name in model's CATEGORY_ICON_CHOICES list
+- [] Sort transactions of account by date
+- [] Apply filters to sorted transactions for a given date range
+- [] 
+
 
 ## Features & UseCases
 The application should help managing the budget and generally get a better understanding of the spendings of the household.
@@ -45,7 +47,6 @@ The following is a attempt to describe the planned features of the app. For this
     - The category overview should show all categories. 
     - it should offer a view to show the sum of transactions with a single category, by week, month and year.
     - it should offer a view to show the sum of all transactions sorted by categories. There should be a way of comparing these.
-- A simple "My Account" area, where username and avatar can be changed.
 
 ### Workflows
 - A user should be able to log in to the app, using his username and password.
