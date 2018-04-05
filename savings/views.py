@@ -66,20 +66,38 @@ def quick_add_transaction(request):
         
         context = {
             'return_state': form_state,
-            'account_object': transaction.account
+            'account': transaction.account
         }
         return render(request, 'savings/account.html', context)
     else:
         # Assume initial rendering
+        
+        # Get default user if authenticated
         if request.user.is_authenticated:
-            user_default_account = request.user.profile.default_account
+            initial_account = request.user.profile.default_account
         else:
-            user_default_account = None
+            initial_account = None
+
+        # Get account the user was before entering form, if any
+        if request.META['HTTP_REFERER']:
+            referer_url = request.META['HTTP_REFERER']
+            if '/account/' in referer_url:
+                initial_account = referer_url[(referer_url.rfind('/'))+1:]
+            else:
+                initial_account = None
 
         context = {
-            'form': QuickTransactionAdd(initial={'account': user_default_account})
+            'form': QuickTransactionAdd(initial={'account': initial_account}),
+            'initial_account_id': initial_account,
+            'initial_account_type': type(initial_account)
         }
-        return render(request, 'savings/quick_add_transaction.html', context)
+        return render(request, 'quick_add_transaction.html', context)
+
+def login(request):
+    return render(request, 'registration/login.html')
+
+def logout(request):
+    return render(request, 'registration/logout.html')
 
 def create_message(state, title, body):
     message = {

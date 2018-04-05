@@ -20,5 +20,9 @@ urlpatterns = [
     path('quick_add_transaction', views.quick_add_transaction),
 
     # Add auth urls from Django
-    path('user/', include('django.contrib.auth.urls'))
+    path('user/', include('django.contrib.auth.urls')),
+
+    # Login/Logout pages
+    path('login/', views.login),
+    path('login/', views.logout)
 ]

@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'savings.middleware.auth_required.AuthRequiredMiddleware'
 ]
 
 ROOT_URLCONF = 'budgetplanner.urls'
@@ -124,4 +125,4 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '/static/images/')
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/savings/'
+LOGIN_REDIRECT_URL = '/'
