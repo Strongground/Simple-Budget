@@ -91,13 +91,7 @@ def quick_add_transaction(request):
             'initial_account_id': initial_account,
             'initial_account_type': type(initial_account)
         }
-        return render(request, 'quick_add_transaction.html', context)
-
-def login(request):
-    return render(request, 'registration/login.html')
-
-def logout(request):
-    return render(request, 'registration/logout.html')
+        return render(request, 'savings/quick_add_transaction.html', context)
 
 def create_message(state, title, body):
     message = {

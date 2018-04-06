@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, re_path
 from django.conf.urls import include
+from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
@@ -12,7 +13,7 @@ urlpatterns = [
     path('account/<int:account_id>', views.account),
 
     # Show the details and all transactions of an bank account
-    # 'savings/account/1'
+    # 'savings/transaction/27'
     path('transaction/<int:transaction_id>', views.transaction),
 
     # Allow for quick adding a transaction without some details, but sufficient for fast
@@ -22,7 +23,6 @@ urlpatterns = [
     # Add auth urls from Django
     path('user/', include('django.contrib.auth.urls')),
 
-    # Login/Logout pages
-    path('login/', views.login),
-    path('login/', views.logout)
+    # Redirect from savings/* to /*
+    # re_path(r'savings/*', RedirectView.as_view(url='/'))
 ]

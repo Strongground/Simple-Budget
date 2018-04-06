@@ -10,7 +10,7 @@ class AuthRequiredMiddleware(object):
 
         response = self.get_response(request)
         if not request.user.is_authenticated and 'login' not in request.path and 'logout' not in request.path:
-            return HttpResponseRedirect('/login')
+            return HttpResponseRedirect('user/login')
 
         # Code to be executed for each request/response after
         # the view is called.
