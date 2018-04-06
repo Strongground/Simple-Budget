@@ -2,9 +2,9 @@
 
 {% block content %}
 
-{% if transactions %}
-    <h2>Transactions of {{account}}</h2>
+<h2>Transactions of {{account}}</h2>
 
+{% if transactions %}
     <div id="transactions_accordions">
     {% for day in transactions  %}
         <h3 class="btn btn-link" data-toggle="collapse" data-target="#day_transactions_{{ forloop.counter }}">

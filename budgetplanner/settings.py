@@ -25,7 +25,7 @@ SECRET_KEY = 'iklur6edvh&bmc5fr=eb$n@a12j=!ndh^$q^#cb8@&+(bs85cz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
 
 
 # Application definition
@@ -120,9 +120,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
-# MEDIA_ROOT = '/static/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '/static/images/')
+
+STATIC_URL = os.path.join(BASE_DIR,'savings/static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'savings/static/')
+# MEDIA_ROOT = 'static/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'savings/static/images/')
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'

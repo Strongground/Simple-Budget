@@ -44,12 +44,24 @@
         </div>
     </header>
 
+    {% comment %} //// Quick Add Transaction Button, floating on top of everything in the bottom right corner {% endcomment %}
     {% block quick_add_transaction %}
         <div class="quick_add_container">
             {% comment %} <a class="quick_add_transaction" href="/savings/quick_add_transaction">Quick add transaction</a> {% endcomment %}
             <a href="/quick_add_transaction" class="btn btn-primary">Quick Add Transaction</a>
         </div>
     {% endblock quick_add_transaction %}
+
+    {% comment %} //// Notification of success, error and information, foating on top of everything at the top middle  {% endcomment %}
+    {% if return_state %}
+        <div class="alert alert-{{return_state.state}} alert-dismissible fade show" role="alert">
+            <p><strong>{{ return_state.title }}</strong><br>
+            {{ return_state.body }}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
 
     <div class="container">
         {% block content %}{% endblock %}
@@ -63,7 +75,14 @@
 
     <script>
         $.ready(function() {
-            //$.initGUI()
+            $.initGUI()
+            if ($('.alert').length >= 1) {
+                console.log('Detected alert')
+                window.setTimeout(() => {
+                    $('.alert').alert('close')
+                }, 1000);
+            }
         })
+        
     </script>
 </body>
