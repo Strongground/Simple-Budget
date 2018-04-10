@@ -50,11 +50,11 @@ def quick_add_transaction(request):
             # Save changes and redirect
             current_transaction.save()
             messages.add_message(request, messages.SUCCESS, 'Successfully created transaction.', extra_tags='alert')
+            # Redirect after successful form submit
+            return HttpResponseRedirect(reverse('account', kwargs={ 'account_id': current_transaction.account.id }))
         else:
             messages.add_message(request, messages.ERROR, 'There was an error while creating the transaction.', extra_tags='alert')
-        
-        return HttpResponseRedirect(reverse('savings.account', kwargs={ 'account_id': current_transaction.account.id }))
-        # return account(request, current_transaction.account.id, form_state)
+            return HttpResponseRedirect(reverse('quick_add_transaction'))
     else:
         # Assume initial rendering
         
