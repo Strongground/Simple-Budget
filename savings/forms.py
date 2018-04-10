@@ -7,3 +7,16 @@ class QuickTransactionAdd(forms.Form):
     is_spending = forms.BooleanField(initial=True, required=False)
     amount = forms.DecimalField(max_digits=100, decimal_places=2)
     category = forms.ModelChoiceField(queryset=Category.objects.all(), initial=False, required=False)
+
+    def is_valid(self):
+        # run the parent validation first
+        valid = super(QuickTransactionAdd, self).is_valid()
+        if not valid:
+            return valid
+
+        # run additional validations
+        amount = self.cleaned_data['amount']
+        if not amount > 0:
+            return False
+        
+        return True
