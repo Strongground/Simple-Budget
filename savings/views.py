@@ -62,15 +62,14 @@ def quick_add_transaction(request):
         if request.user.is_authenticated:
             initial_account = request.user.profile.default_account
         else:
-            initial_account = None
-
-        # Get account the user was before entering form, if any
-        if 'HTTP_REFERER' in request.META:
-            referer_url = request.META['HTTP_REFERER']
-            if '/account/' in referer_url:
-                initial_account = referer_url[(referer_url.rfind('/'))+1:]
+            if 'HTTP_REFERER' in request.META:
+                referer_url = request.META['HTTP_REFERER']
+                if '/account/' in referer_url:
+                    initial_account = referer_url[(referer_url.rfind('/'))+1:]
             else:
                 initial_account = None
+
+        # Get account the user was before entering form, if any
 
         context = {
             'form': QuickTransactionAdd(initial={'account': initial_account}),
