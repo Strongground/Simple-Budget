@@ -29,6 +29,12 @@
                     </tr>
                     {% endfor %}
                 </tbody>
+                <tfoot>
+                    <tr class="sum">
+                        <td class="description text-right" colspan="2">Sum of day:</td>
+                        <td class="amount text-right">{{ day.sum_transactions }}</td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     {% endfor %}

@@ -85,10 +85,14 @@ def get_transactions_to_show_in_account(account_id):
     for iterator in range(0,USER_PREFERENCE_ACCOUNT_TRANSACTIONS_DAYS):
         current_date = end_date - timedelta(days=iterator)
         day_transactions = Transaction.objects.filter(account__id=account_id, date=current_date)
+        sum_transactions = 0
+        for transaction in day_transactions:
+            sum_transactions += transaction.amount
         if day_transactions:
             transactions.append({
                 'date': current_date,
                 'transactions': day_transactions,
-                'sum_transactions': len(day_transactions)
+                'number_of_transactions': len(day_transactions),
+                'sum_transactions': sum_transactions
             })
     return transactions
