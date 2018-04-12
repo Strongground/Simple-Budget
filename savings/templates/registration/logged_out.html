@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="text-center">
+<div id="logout-page" class="text-center" data-login-target="{% url 'login' %}">
   {% load static %}
   <div class="mb-4 logo-container">
     <img src="{% static 'images/simplelogo.png' %}" alt="Simple Budget" width="150" height="150">
