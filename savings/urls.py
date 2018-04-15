@@ -20,6 +20,9 @@ urlpatterns = [
     # adding when on mobile. Takes no arguments.
     path('quick_add_transaction/', views.quick_add_transaction, name='quick_add_transaction'),
 
+    # Allow creation of a new transaction with all features of the model
+    path('add_transaction/', views.add_transaction, name='add_transaction'),
+
     # Add auth urls from Django
     path('user/', include('django.contrib.auth.urls')),
 

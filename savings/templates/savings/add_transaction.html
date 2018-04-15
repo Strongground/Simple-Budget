@@ -1,0 +1,20 @@
+{% extends "frame.html" %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+    <h1>Add Transaction</h1>
+
+    <form class="add_transaction" action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Add Transaction</button>
+        {% endbuttons %}
+    </form>
+
+{% endblock %}
+
+{% comment %} Empty quick add block because it makes no sense to show a shortcut to a feature-strupped version of this page on this page {% endcomment %}
+{% block quick_add_transaction %}{% endblock quick_add_transaction %}

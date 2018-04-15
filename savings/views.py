@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 
 from .models import Account, Transaction, User, Profile
-from .forms import QuickTransactionAdd
+from .forms import QuickTransactionAdd, AddTransaction
 
 User = get_user_model()
 USER_PREFERENCE_ACCOUNT_TRANSACTIONS_DAYS = 100
@@ -34,34 +34,35 @@ def transaction(request, transaction_id):
     return render(request, 'savings/transaction.html', context)
 
 def quick_add_transaction(request):
+    # Assume submitted form, validate
     if request.method == 'POST':
-        # Assume submitted form, validate
         form = QuickTransactionAdd(request.POST)
         if form.is_valid():
-            current_transaction = Transaction()
+            new_transaction = Transaction()
             # Put form values in new transaction
-            current_transaction.account = form.cleaned_data['account']
-            current_transaction.is_spending = form.cleaned_data['is_spending']
-            current_transaction.amount = form.cleaned_data['amount']
+            new_transaction.account = form.cleaned_data['account']
+            new_transaction.is_spending = form.cleaned_data['is_spending']
+            new_transaction.amount = form.cleaned_data['amount']
             if form.cleaned_data['description']:
-                current_transaction.description = form.cleaned_data['description']
+                new_transaction.description = form.cleaned_data['description']
             if form.cleaned_data['category']:
-                current_transaction.category = form.cleaned_data['category']
+                new_transaction.category = form.cleaned_data['category']
             # Save changes and redirect
-            current_transaction.save()
+            new_transaction.save()
             messages.add_message(request, messages.SUCCESS, 'Successfully created transaction.', extra_tags='alert')
             # Redirect after successful form submit
-            return HttpResponseRedirect(reverse('account', kwargs={ 'account_id': current_transaction.account.id }))
+            return HttpResponseRedirect(reverse('account', kwargs={ 'account_id': new_transaction.account.id }))
         else:
             messages.add_message(request, messages.ERROR, 'There was an error while creating the transaction.', extra_tags='alert')
             return HttpResponseRedirect(reverse('quick_add_transaction'))
-    else:
-        # Assume initial rendering
         
-        # Get default user if authenticated
+    # Assume initial rendering
+    else:
+        # Get default account if authenticated user
         if request.user.is_authenticated:
             initial_account = request.user.profile.default_account
         else:
+            # Get account the user was before entering form, if any
             if 'HTTP_REFERER' in request.META:
                 referer_url = request.META['HTTP_REFERER']
                 if '/account/' in referer_url:
@@ -69,14 +70,46 @@ def quick_add_transaction(request):
             else:
                 initial_account = None
 
-        # Get account the user was before entering form, if any
-
         context = {
             'form': QuickTransactionAdd(initial={'account': initial_account}),
             'initial_account_id': initial_account,
             'initial_account_type': type(initial_account)
         }
         return render(request, 'savings/quick_add_transaction.html', context)
+    
+def add_transaction(request):
+    # Assume submitted form, validate
+    if request.method == 'POST':
+        form = AddTransaction(request.POST)
+        if form.is_valid():
+            new_transaction = Transaction()
+            # Put required form values in new transaction
+            new_transaction.account = form.cleaned_data['account']
+            new_transaction.is_spending = form.cleaned_data['is_spending']
+            new_transaction.amount = form.cleaned_data['amount']
+            new_transaction.date = form.cleaned_data['date']
+            # now optional fields
+            if form.cleaned_data['description']:
+                new_transaction.description = form.cleaned_data['description']
+            if form.cleaned_data['category']:
+                new_transaction.category = form.cleaned_data['category']
+            if form.cleaned_data['recurring']:
+                new_transaction.recurring = form.cleaned_data['recurring']
+                new_transaction.recurring = form.cleaned_data['repeat_date']
+            # Save changes and redirect
+            new_transaction.save()
+            messages.add_message(request, messages.SUCCESS, 'Successfully created transaction.', extra_tags='alert')
+            return HttpResponseRedirect(reverse('account', kwargs={ 'account_id': new_transaction.account.id }))
+        else:
+            messages.add_message(request, messages.ERROR, 'There was an error while creating the transaction.', extra_tags='alert')
+            return HttpResponseRedirect(reverse('add_transaction'))
+
+    # Assume initial rendering
+    else:
+        context = {
+            'form': AddTransaction,
+        }
+        return render(request, 'savings/add_transaction.html', context)
 
 def get_transactions_to_show_in_account(account_id):
     end_date = date.today()

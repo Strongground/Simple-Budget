@@ -111,7 +111,7 @@ class Transaction(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
     date = models.DateField(default=date.today)
     recurring = models.BooleanField(default=False)
-    repeat_time = models.DurationField(blank=True, null=True)
+    repeat_time = models.DecimalField(blank=True, null=True, decimal_places=0, max_digits=2, choices=TRANSACTION_RECUR_REPEAT_DATES)
     def __str__(self):
         return self.description + ': ' + str(self.amount) + '€'
 
