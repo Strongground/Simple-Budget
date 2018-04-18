@@ -12,9 +12,9 @@ urlpatterns = [
     # 'savings/account/1'
     path('account/<int:account_id>', views.account, name='account'),
 
-    # Show the details and all transactions of an bank account
+    # Show the details of a transaction and allow to change values of it
     # 'savings/transaction/27'
-    path('transaction/<int:transaction_id>', views.transaction, name='transaction'),
+    path('update_transaction/<int:transaction_id>', views.update_transaction, name='update_transaction'),
 
     # Allow for quick adding a transaction without some details, but sufficient for fast
     # adding when on mobile. Takes no arguments.

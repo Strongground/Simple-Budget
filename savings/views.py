@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 
 from .models import Account, Transaction, User, Profile
-from .forms import QuickTransactionAdd, AddTransaction
+from .forms import QuickTransactionAdd, AddTransaction, UpdateTransaction
 
 User = get_user_model()
 USER_PREFERENCE_ACCOUNT_TRANSACTIONS_DAYS = 100
@@ -26,12 +26,38 @@ def account(request, account_id):
     }
     return render(request, 'savings/account.html', context)
 
-def transaction(request, transaction_id):
-    transaction_object = get_object_or_404(Transaction, id=transaction_id)
-    context = {
-        'transaction': transaction_object
-    }
-    return render(request, 'savings/transaction.html', context)
+def update_transaction(request, transaction_id):
+    # Assume submitted form, validate
+    if request.method == 'POST':
+        account_of_transaction_before_update = Transaction.objects.get(id=transaction_id).account.id
+        transaction_object = Transaction.objects.get(id=transaction_id)
+        form = UpdateTransaction(request.POST, instance=transaction_object)
+        if form.is_valid():
+            # Update transaction with form values
+            update_instance_attribute_if_changed(transaction_object.account, form.cleaned_data['account'])
+            update_instance_attribute_if_changed(transaction_object.is_spending, form.cleaned_data['is_spending'])
+            update_instance_attribute_if_changed(transaction_object.amount, form.cleaned_data['amount'])
+            update_instance_attribute_if_changed(transaction_object.description, form.cleaned_data['description'])
+            update_instance_attribute_if_changed(transaction_object.category, form.cleaned_data['category'])
+            update_instance_attribute_if_changed(transaction_object.recurring, form.cleaned_data['recurring'])
+            if form.cleaned_data['recurring']:
+                update_instance_attribute_if_changed(transaction_object.category, form.cleaned_data['category'])
+            # Save changes
+            transaction_object.save()
+            messages.add_message(request, messages.SUCCESS, 'Successfully updated transaction.', extra_tags='alert')
+        else:
+            messages.add_message(request, messages.ERROR, 'There was an error while updating the transaction.', extra_tags='alert')
+        # Redirect after form submit no matter if successful or not
+        return HttpResponseRedirect(reverse('account', kwargs={ 'account_id': account_of_transaction_before_update }))
+        
+    # Assume initial rendering
+    else:
+        transaction_object = get_object_or_404(Transaction, id=transaction_id)
+        context = {
+            'transaction': transaction_object,
+            'form': UpdateTransaction(instance=transaction_object)
+        }
+        return render(request, 'savings/update_transaction.html', context)
 
 def quick_add_transaction(request):
     # Assume submitted form, validate
@@ -129,3 +155,9 @@ def get_transactions_to_show_in_account(account_id):
                 'sum_transactions': sum_transactions
             })
     return transactions
+
+def update_instance_attribute_if_changed(updated_value, instance_attribute):
+    if updated_value != instance_attribute:
+        instance_attribute = updated_value
+        return True
+    return False

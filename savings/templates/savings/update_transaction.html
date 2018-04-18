@@ -3,13 +3,13 @@
 
 {% block content %}
 
-<h1>Quick-add Transaction</h1>
+<h1>Transaction View</h1>
 
-<form class="quick_add_transaction" action="" method="post">
+<form class="update_transaction" action="" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
-        <button type="submit" class="btn btn-primary">Add Transaction</button>
+        <button type="submit" class="btn btn-primary">Update Transaction</button>
     {% endbuttons %}
 </form>
 

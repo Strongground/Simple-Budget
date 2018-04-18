@@ -67,3 +67,8 @@ class AddTransaction(forms.Form):
             if not self.cleaned_data.get(field, ''):
                 msg = forms.ValidationError("This field is required.")
                 self.add_error(field, msg)
+
+class UpdateTransaction(forms.ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ['account', 'description', 'is_spending', 'amount', 'category', 'date', 'recurring', 'repeat_time']
