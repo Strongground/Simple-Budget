@@ -7,10 +7,11 @@ $(document).ready(function () {
   }
 
   // Redirect from logout to login page after timeout
-  let isLogoutPage = $('#logout-page')
-  let logoutRedirectTarget = $('#logout-page').attr('data-login-target')
-  let logoutRedirectURL = window.location.protocol + '//' + window.location.host + logoutRedirectTarget
+  var isLogoutPage = $('#logout-page')
+  isLogoutPage.length > 0
   if (isLogoutPage) {
+    var logoutRedirectTarget = $('#logout-page').attr('data-login-target')
+    var logoutRedirectURL = window.location.protocol + '//' + window.location.host + logoutRedirectTarget
     window.setTimeout(() => {
       window.location = logoutRedirectURL
     }, 2500)
