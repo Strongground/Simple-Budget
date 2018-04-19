@@ -32,8 +32,6 @@
             <h1 style="background-image: url({% static 'images/simplelogo_white.png' %})">SimpleBudget</h1>
         </a>
 
-        <a href="{% url 'add_transaction' %}">Add transaction</a>
-        
         <div class="userinfo">
             <p>
             {% if user and user.first_name %}
@@ -53,9 +51,15 @@
 
     {% comment %} //// Quick Add Transaction Button, floating on top of everything in the bottom right corner {% endcomment %}
     {% block quick_add_transaction %}
-        <div class="quick_add_container">
-            {% comment %} <a class="quick_add_transaction" href="/savings/quick_add_transaction">Quick add transaction</a> {% endcomment %}
+        <div class="quick_menu_container">
+            <div class="menu_trigger" href="">+</div>
+            <a class="quick_add_transaction menu_entry" href="{% url 'quick_add_transaction' %}"><span class="oi oi-flash"></span> Quick-Add Transaction</a>
+            <a class="add_transaction menu_entry" href="{% url 'add_transaction' %}"><span class="oi oi-plus"></span> Add Transaction</a>
+            <a class="modify_categories menu_entry" href=""><span class="oi oi-tags"></span> View & Modify Categories</a>
+            <a class="user_profile menu_entry" href=""><span class="oi oi-person"></span> Edit Your Profile</a> 
+            {% comment %} 
             <a href="{% url 'quick_add_transaction' %}" class="btn btn-primary">Quick Add Transaction</a>
+            {% endcomment %}
         </div>
     {% endblock quick_add_transaction %}
 

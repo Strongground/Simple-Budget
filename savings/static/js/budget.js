@@ -24,10 +24,21 @@ $(document).ready(function () {
   }
   triggerField.change(function () {
     if ($(this).prop('checked') === true) {
-      console.log('I come til here')
       conditionalField.parent().fadeIn()
     } else {
       conditionalField.parent().fadeOut()
     }
+  })
+
+  // Set quick menu to active
+  var quickMenuContainer = $('.quick_menu_container')
+  var quickMenuTrigger = quickMenuContainer.find('.menu_trigger')
+  var quickMenuEntries = quickMenuContainer.find('.menu_entry')
+  quickMenuEntries.hide()
+  quickMenuTrigger.on('click', function () {
+    window.setTimeout(() => {
+      quickMenuContainer.toggleClass('active')
+    }, 10)
+    quickMenuEntries.fadeToggle(150)
   })
 })

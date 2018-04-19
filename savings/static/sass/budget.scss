@@ -174,23 +174,24 @@ form {
   }
 }
 
-.quick_add_container {
+.quick_menu_container {
   position: fixed;
   right: 10px;
   bottom: 10px;
-  text-align: right;
-  &* {
-    transition: transform 0.35s ease-in-out;
-  }
+  max-width: 240px;
   .btn {
     background-color: $main-color;
     border-color: darken($main-color, 50)
   }
-  .quick_add_transaction {
-    text-align: left;
+  .menu_trigger {
     display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
     width: 100px;
     height: 100px;
+    cursor: pointer;
+    text-align: left;
     font-size: 800%;
     font-weight: 200;
     color: white;
@@ -199,29 +200,42 @@ form {
     padding-left: 9pt;
     line-height: 68%;
     text-decoration: none;
-  }
-  .menu {
-    display: relative;
-    overflow: hidden;
-    opacity: 0;
-  }
-  .entry {
-    display: absolute;
-    border-radius: 50% 50%;
-    min-width: 20px;
-    height: 20px;
-    color: white;
     transition: transform 0.35s ease-in-out;
-  }
-  &.active {
-    .quick_add_transaction {
+    z-index: 99;
+    &:hover {
       transform: rotate(135deg)
     }
-    .menu {
-      opacity: 1;
+  }
+  .menu_entry {
+    position: relative;
+    float: right;
+    right: 0;
+    background-color: $main-color;
+    padding: 7px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1;
+    transition: top 0.25s ease-in-out;
+    &:nth-child(2) {
+      top: 124px;
     }
-    .entry {
-      margin-bottom: 15px;
+    &:nth-child(3) {
+      top: 76px;
+    }
+    &:nth-child(4) {
+      top: 28px;
+    }
+    &:nth-child(5) {
+      top: -20px;
+    }
+  }
+  &.active {
+    .menu_entry {
+      top: -105px;
+    }
+    .menu_trigger {
+      transform: rotate(135deg)
     }
   }
 }
