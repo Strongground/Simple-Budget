@@ -24,6 +24,7 @@ body {
     transform: translate(-50%);
     top: 70px;
   }
+  padding-bottom: 40px;
 }
 
 [class^="icon-"], [class*=" icon-"] {
@@ -175,6 +176,7 @@ form {
 }
 
 .quick_menu_container {
+  z-index: 1;
   position: fixed;
   right: 10px;
   bottom: 10px;
