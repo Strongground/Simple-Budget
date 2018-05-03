@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 
 from .models import Account, Transaction, User, Profile
-from .forms import QuickTransactionAdd, AddTransaction, UpdateTransaction
+from .forms import QuickTransactionAdd, AddTransaction, UpdateTransaction, DeleteTransaction
 
 User = get_user_model()
 USER_PREFERENCE_ACCOUNT_TRANSACTIONS_DAYS = 100
@@ -29,25 +29,34 @@ def account(request, account_id):
 def update_transaction(request, transaction_id):
     # Assume submitted form, validate
     if request.method == 'POST':
-        account_of_transaction_before_update = Transaction.objects.get(id=transaction_id).account.id
         transaction_object = Transaction.objects.get(id=transaction_id)
-        form = UpdateTransaction(request.POST, instance=transaction_object)
-        if form.is_valid():
-            # Update transaction with form values
-            update_instance_attribute_if_changed(transaction_object.account, form.cleaned_data['account'])
-            update_instance_attribute_if_changed(transaction_object.is_spending, form.cleaned_data['is_spending'])
-            update_instance_attribute_if_changed(transaction_object.amount, form.cleaned_data['amount'])
-            update_instance_attribute_if_changed(transaction_object.description, form.cleaned_data['description'])
-            update_instance_attribute_if_changed(transaction_object.category, form.cleaned_data['category'])
-            update_instance_attribute_if_changed(transaction_object.recurring, form.cleaned_data['recurring'])
-            if form.cleaned_data['recurring']:
+        account_of_transaction_before_update = Transaction.objects.get(id=transaction_id).account.id
+        # Check if the update-transaction form was submitted
+        if 'update-transaction' in request.POST:
+            form = UpdateTransaction(request.POST, instance=transaction_object)
+            if form.is_valid():
+                # Update transaction with form values
+                update_instance_attribute_if_changed(transaction_object.account, form.cleaned_data['account'])
+                update_instance_attribute_if_changed(transaction_object.is_spending, form.cleaned_data['is_spending'])
+                update_instance_attribute_if_changed(transaction_object.amount, form.cleaned_data['amount'])
+                update_instance_attribute_if_changed(transaction_object.description, form.cleaned_data['description'])
                 update_instance_attribute_if_changed(transaction_object.category, form.cleaned_data['category'])
-            # Save changes
-            transaction_object.save()
-            messages.add_message(request, messages.SUCCESS, 'Successfully updated transaction.', extra_tags='alert')
-        else:
-            messages.add_message(request, messages.ERROR, 'There was an error while updating the transaction.', extra_tags='alert')
-        # Redirect after form submit no matter if successful or not
+                update_instance_attribute_if_changed(transaction_object.recurring, form.cleaned_data['recurring'])
+                if form.cleaned_data['recurring']:
+                    update_instance_attribute_if_changed(transaction_object.category, form.cleaned_data['category'])
+                # Save changes
+                transaction_object.save()
+                messages.add_message(request, messages.SUCCESS, 'Successfully updated transaction.', extra_tags='alert')
+            else:
+                messages.add_message(request, messages.ERROR, 'There was an error while updating the transaction.', extra_tags='alert')
+        # Check if the delete-transaction form was submitted
+        elif 'delete-transaction' in request.POST:
+            form = DeleteTransaction(request.POST)
+            if form.is_valid():
+                # If CSFR is valid, delete transaction
+                transaction_object.delete()
+                messages.add_message(request, messages.SUCCESS, 'Deleted transaction!', extra_tags='alert')
+        # Redirect after form submit no matter if update, deletion, successful or not
         return HttpResponseRedirect(reverse('account', kwargs={ 'account_id': account_of_transaction_before_update }))
         
     # Assume initial rendering
@@ -55,7 +64,8 @@ def update_transaction(request, transaction_id):
         transaction_object = get_object_or_404(Transaction, id=transaction_id)
         context = {
             'transaction': transaction_object,
-            'form': UpdateTransaction(instance=transaction_object)
+            'form': UpdateTransaction(instance=transaction_object),
+            'delete_form': DeleteTransaction()
         }
         return render(request, 'savings/update_transaction.html', context)
 
@@ -146,7 +156,10 @@ def get_transactions_to_show_in_account(account_id):
         day_transactions = Transaction.objects.filter(account__id=account_id, date=current_date)
         sum_transactions = 0
         for transaction in day_transactions:
-            sum_transactions += transaction.amount
+            if transaction.is_spending is True:
+                sum_transactions = sum_transactions - transaction.amount
+            else:
+                sum_transactions = sum_transactions + transaction.amount
         if day_transactions:
             transactions.append({
                 'date': current_date,

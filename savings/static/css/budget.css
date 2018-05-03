@@ -158,8 +158,20 @@ table.transactions tr.sum {
   text-align: left;
 }
 
-form.quick_add_transaction .btn {
-  float: right;
+form.quick_add_transaction .btn, form.add_transaction .btn, form.update_transaction .btn {
+  width: 100%;
+}
+
+@media (min-width: 375px) {
+  form.quick_add_transaction .btn, form.add_transaction .btn, form.update_transaction .btn {
+    width: auto;
+  }
+  form .delete_transaction.btn {
+    float: right;
+    display: inline;
+    position: relative;
+    bottom: 54px;
+  }
 }
 
 @media (max-width: 576px) {

@@ -8,7 +8,7 @@
     <div id="transactions_accordions">
     {% for day in transactions  %}
         <h3 class="btn btn-link" data-toggle="collapse" data-target="#day_transactions_{{ forloop.counter }}">
-            Transactions from {{ day.date }} ({{ day.sum_transactions }})
+            Transactions from {{ day.date }} ({{ day.number_of_transactions }})
         </h3>
         <!-- Add 'data-parent="#transactions_accordions"' to enable only-one-open accordion behaviour -->
         <div id="day_transactions_{{ forloop.counter }}" class="collapse{% if forloop.counter <= 2 %} show{% endif %}">
