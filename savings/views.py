@@ -156,7 +156,10 @@ def get_transactions_to_show_in_account(account_id):
         day_transactions = Transaction.objects.filter(account__id=account_id, date=current_date)
         sum_transactions = 0
         for transaction in day_transactions:
-            sum_transactions += transaction.amount
+            if transaction.is_spending is True:
+                sum_transactions = sum_transactions - transaction.amount
+            else:
+                sum_transactions = sum_transactions + transaction.amount
         if day_transactions:
             transactions.append({
                 'date': current_date,
