@@ -48,7 +48,6 @@ class AddTransaction(forms.Form):
         amount = self.cleaned_data['amount']
         if not amount > 0:
             return False
-        
         return True
     
     def clean(self):
@@ -58,7 +57,6 @@ class AddTransaction(forms.Form):
             self.fields_required(['repeat_time'])
         else:
             self.cleaned_data['repeat_time'] = ''
-        
         return self.cleaned_data
     
     def fields_required(self, fields):
@@ -72,3 +70,7 @@ class UpdateTransaction(forms.ModelForm):
     class Meta:
         model = Transaction
         fields = ['account', 'description', 'is_spending', 'amount', 'category', 'date', 'recurring', 'repeat_time']
+
+class DeleteTransaction(forms.Form):
+    # delete = forms.BooleanField(initial=False, required=False, widget=forms.HiddenInput)
+    pass

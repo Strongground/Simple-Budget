@@ -148,9 +148,28 @@ table {
 }
 
 form {
-  &.quick_add_transaction {
+  &.quick_add_transaction,
+  &.add_transaction,
+  &.update_transaction {
     .btn {
+      width: 100%;
+    }
+  }
+}
+@media (min-width: 375px) {
+  form {
+    &.quick_add_transaction,
+    &.add_transaction,
+    &.update_transaction {
+      .btn {
+        width: auto;
+      }
+    }
+    .delete_transaction.btn {
       float: right;
+      display: inline;
+      position: relative;
+      bottom: 54px;
     }
   }
 }
