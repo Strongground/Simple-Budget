@@ -52,10 +52,10 @@
                         <input class="input-name" type="text" data-category-id="{{category.id}}" value="{{ category.name }}">
                     </td>
                     <td class="edit text-right">
-                        <button class="save btn btn-primary btn-sm" data-category-id="{{category.id}}" name="update-category"><span class="oi oi-check"></span> Save</button>
-                        <button class="edit btn btn-primary btn-sm" data-category-id="{{category.id}}"><span class="oi oi-pencil"></span> Edit</button>
-                        <button class="stop-edit btn btn-danger btn-sm" data-category-id="{{category.id}}"><span class="oi oi-circle-x"></span> Close</button>
-                        <button class="delete btn btn-danger btn-sm" data-category-id="{{category.id}}" data-toggle="modal" data-target="#deleteCategoryModal"><span class="oi oi-delete"></span> Delete</button>
+                        <button class="save btn btn-primary btn-sm" data-category-id="{{category.id}}" name="update-category"><span class="oi oi-check"></span> <span>Save</span></button>
+                        <button class="edit btn btn-primary btn-sm" data-category-id="{{category.id}}"><span class="oi oi-pencil"></span> <span>Edit</span></button>
+                        <button class="stop-edit btn btn-danger btn-sm" data-category-id="{{category.id}}"><span class="oi oi-circle-x"></span> <span>Close</span></button>
+                        <button class="delete btn btn-danger btn-sm" data-category-id="{{category.id}}" data-toggle="modal" data-target="#deleteCategoryModal"><span class="oi oi-delete"></span> <span>Delete</span></button>
                     </td>
                 </tr>
         {% endfor %}
@@ -68,7 +68,7 @@
                     </select>
                 </td>
                 <td class="new-name">
-                    <input class="input-name" type="text">
+                    <input class="input-name" placeholder="Name of new category" type="text">
                 </td>
                 <td class="new-category text-right">
                     <button class="save btn btn-primary btn-sm" name="new-category"><span class="oi oi-check"></span> Add Category</button>
