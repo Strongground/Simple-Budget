@@ -29,6 +29,16 @@ body .alert {
   top: 70px;
 }
 
+body .btn.btn-primary {
+  background-color: #57188e;
+  border-color: #57188e;
+}
+
+body .btn.btn-primary:hover {
+  background-color: #721fba;
+  border-color: #57188e;
+}
+
 [class^="icon-"], [class*=" icon-"] {
   font-size: 15pt;
   margin: 0;
@@ -122,6 +132,10 @@ header .userinfo a {
   border-top-right-radius: 0;
 }
 
+table p {
+  margin: 0;
+}
+
 table.transactions {
   margin-bottom: 30px;
 }
@@ -149,6 +163,13 @@ table.transactions tr.balance td.balance {
 
 table.transactions tr.sum {
   font-weight: 700;
+}
+
+table.categories .category .select-icon,
+table.categories .category .btn.save,
+table.categories .category .btn.stop-edit,
+table.categories .category .name input {
+  display: none;
 }
 
 #transactions_accordions h3 {
@@ -217,12 +238,12 @@ form.quick_add_transaction .btn, form.add_transaction .btn, form.update_transact
   padding-left: 9pt;
   line-height: 68%;
   text-decoration: none;
-  transition: transform 0.35s ease-in-out;
+  transition: background-color 0.5s ease-in-out, transform 0.35s ease-in-out;
   z-index: 99;
 }
 
 .quick_menu_container .menu_trigger:hover {
-  transform: rotate(135deg);
+  background-color: #721fba;
 }
 
 .quick_menu_container .menu_entry {
@@ -235,7 +256,12 @@ form.quick_add_transaction .btn, form.add_transaction .btn, form.update_transact
   border-radius: 5px;
   color: white;
   z-index: 1;
-  transition: top 0.25s ease-in-out;
+  transition: top 0.25s ease-in-out, background-color 0.5 linear;
+}
+
+.quick_menu_container .menu_entry:hover {
+  background-color: #721fba;
+  text-decoration: none;
 }
 
 .quick_menu_container .menu_entry:nth-child(2) {

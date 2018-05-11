@@ -24,6 +24,16 @@ body {
     transform: translate(-50%);
     top: 70px;
   }
+  .btn {
+    &.btn-primary {
+      background-color: $main-color;
+      border-color: $main-color;
+      &:hover {
+        background-color: lighten($main-color, 10%);
+        border-color: $main-color;
+      }
+    }
+  }
   padding-bottom: 40px;
 }
 
@@ -114,6 +124,9 @@ header {
 }
 
 table {
+  p {
+    margin: 0;
+  }
   &.transactions {
     margin-bottom: 30px;
     .badge.badge-pill {
@@ -134,6 +147,16 @@ table {
     }
     tr.sum {
       font-weight: 700;
+    }
+  }
+  &.categories {
+    .category {
+      .select-icon,
+      .btn.save,
+      .btn.stop-edit,
+      .name input {
+        display: none;
+      }
     }
   }
 }
@@ -221,10 +244,11 @@ form {
     padding-left: 9pt;
     line-height: 68%;
     text-decoration: none;
-    transition: transform 0.35s ease-in-out;
+    transition: background-color 0.5s ease-in-out,
+                transform 0.35s ease-in-out;
     z-index: 99;
     &:hover {
-      transform: rotate(135deg)
+      background-color: lighten($main-color, 10%)
     }
   }
   .menu_entry {
@@ -237,7 +261,12 @@ form {
     border-radius: 5px;
     color: white;
     z-index: 1;
-    transition: top 0.25s ease-in-out;
+    transition: top 0.25s ease-in-out,
+                background-color 0.5 linear;
+    &:hover {
+      background-color: lighten($main-color, 10%);
+      text-decoration: none;
+    }
     &:nth-child(2) {
       top: 124px;
     }

@@ -4,16 +4,16 @@ from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
-    # Global overview of all accounts (for now)
-    # 'savings'
+    # Global overview of all accounts
+    # e.g. '/'
     path('', views.index, name='index'),
     
     # Show the details and all transactions of an bank account
-    # 'savings/account/1'
+    # e.g. '/account/1'
     path('account/<int:account_id>', views.account, name='account'),
 
     # Show the details of a transaction and allow to change values of it
-    # 'savings/transaction/27'
+    # e.g. '/transaction/27'
     path('update_transaction/<int:transaction_id>', views.update_transaction, name='update_transaction'),
 
     # Allow for quick adding a transaction without some details, but sufficient for fast
@@ -26,6 +26,10 @@ urlpatterns = [
     # Add auth urls from Django
     path('user/', include('django.contrib.auth.urls')),
 
-    # Redirect from savings/* to /*
-    # re_path(r'savings/*', RedirectView.as_view(url='/'))
+    # Show, add and delete categories
+    path('categories/', views.categories, name='categories'),
+
+    # Modify category or create new
+    # e.g. '/update_category/7'
+    path('update_category/<int:category_id>', views.update_category, name='update_category'),
 ]

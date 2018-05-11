@@ -108,7 +108,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     def get_icon(self):
-        return self.icon_id
+        return 'icon-' + self.icon_id
 
 class Transaction(models.Model):
     account = models.ForeignKey(Account, on_delete=models.SET_NULL, blank=True, null=True)

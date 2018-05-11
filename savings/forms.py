@@ -72,5 +72,17 @@ class UpdateTransaction(forms.ModelForm):
         fields = ['account', 'description', 'is_spending', 'amount', 'category', 'date', 'recurring', 'repeat_time']
 
 class DeleteTransaction(forms.Form):
-    # delete = forms.BooleanField(initial=False, required=False, widget=forms.HiddenInput)
     pass
+
+class UpdateCategory(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', 'icon_id']
+
+class DeleteCategory(forms.Form):
+    pass
+
+class AddCategory(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', 'icon_id']

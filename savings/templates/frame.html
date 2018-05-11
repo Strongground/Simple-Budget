@@ -54,7 +54,7 @@
         <div class="quick_menu_container">
             <div class="menu_trigger" href="">+</div>
             <a class="user_profile menu_entry" href=""><span class="oi oi-person"></span> Edit Your Profile</a> 
-            <a class="modify_categories menu_entry" href=""><span class="oi oi-tags"></span> View & Modify Categories</a>
+            <a class="modify_categories menu_entry" href="{% url 'categories' %}"><span class="oi oi-tags"></span> View & Modify Categories</a>
             <a class="add_transaction menu_entry" href="{% url 'add_transaction' %}"><span class="oi oi-plus"></span> Add Transaction</a>
             <a class="quick_add_transaction menu_entry" href="{% url 'quick_add_transaction' %}"><span class="oi oi-flash"></span> Quick-Add Transaction</a>
         </div>

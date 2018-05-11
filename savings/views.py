@@ -5,10 +5,9 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 
-from .models import Account, Transaction, User, Profile
-from .forms import QuickTransactionAdd, AddTransaction, UpdateTransaction, DeleteTransaction
+from .models import Account, Transaction, Category, CATEGORY_ICON_CHOICES
+from .forms import QuickTransactionAdd, AddTransaction, UpdateTransaction, DeleteTransaction, UpdateCategory, DeleteCategory, AddCategory
 
-User = get_user_model()
 USER_PREFERENCE_ACCOUNT_TRANSACTIONS_DAYS = 100
 
 def index(request):
@@ -94,10 +93,8 @@ def quick_add_transaction(request):
         
     # Assume initial rendering
     else:
-        # Get default account if authenticated user
-        if request.user.is_authenticated:
-            initial_account = request.user.profile.default_account
-        else:
+        initial_account = request.user.profile.default_account
+        if not initial_account:
             # Get account the user was before entering form, if any
             if 'HTTP_REFERER' in request.META:
                 referer_url = request.META['HTTP_REFERER']
@@ -112,7 +109,7 @@ def quick_add_transaction(request):
             'initial_account_type': type(initial_account)
         }
         return render(request, 'savings/quick_add_transaction.html', context)
-    
+
 def add_transaction(request):
     # Assume submitted form, validate
     if request.method == 'POST':
@@ -147,6 +144,54 @@ def add_transaction(request):
         }
         return render(request, 'savings/add_transaction.html', context)
 
+def categories(request):
+    form = UpdateCategory(request.POST)
+    delete_form = DeleteCategory(request.POST)
+    add_form = AddCategory(request.POST)
+    # Handle if form was submitted
+    if request.method == 'POST':
+        if 'add-category' in request.POST:
+            form = AddCategory(request.POST)
+            if form.is_valid():
+                new_category = Category()
+                new_category.name = form.cleaned_data['name']
+                new_category.icon_id = form.cleaned_data['icon_id']
+                new_category.save()
+                messages.add_message(request, messages.SUCCESS, 'New category added.', extra_tags='alert')
+        elif 'delete-category' in request.POST:
+            form = DeleteCategory(request.POST)
+            if form.is_valid():
+                category_id = request.POST['category_id']
+                category_object = Category.objects.get(id=category_id)
+                category_object.delete()
+                messages.add_message(request, messages.SUCCESS, 'Deleted category!', extra_tags='alert')
+    # Standard page rendering
+    context = {
+        'all_categories': Category.objects.all(),
+        'all_icons': CATEGORY_ICON_CHOICES,
+        'form': form,
+        'delete_form': delete_form,
+        'add_form': add_form
+    }
+    return render(request, 'savings/categories.html', context)
+
+def update_category(request, category_id):
+    category_object = Category.objects.get(id=category_id)
+    # Assume form submitted
+    if request.method == 'POST':
+        # update-category form was submitted and CSFR token is valid
+        form = UpdateCategory(request.POST, instance=category_object)
+        if form.is_valid():
+            update_instance_attribute_if_changed(category_object.name, form.cleaned_data['name'])
+            update_instance_attribute_if_changed(category_object.icon_id, form.cleaned_data['icon_id'])
+            category_object.save()
+            messages.add_message(request, messages.SUCCESS, 'Successfully modified category', extra_tags='alert')
+    # This should not happen, except a user tries to mess around
+    else:
+        messages.add_message(request, messages.ERROR, 'Invalid form submission!', extra_tags='alert')
+    # In any case redirect back to categories overview, either successful or with error
+    return HttpResponseRedirect(reverse('categories'))
+    
 def get_transactions_to_show_in_account(account_id):
     end_date = date.today()
     start_date = end_date - timedelta(days=USER_PREFERENCE_ACCOUNT_TRANSACTIONS_DAYS)
