@@ -23,7 +23,7 @@
                 <tbody>
                     {% for transaction in day.transactions %}
                     <tr class="transaction">
-                        <td class="icon"><p class="icon-{% if not transaction.category or not transaction.category.icon_id %}simple-budget{% else %}{{transaction.category.get_icon}}{% endif %}" title="{{transaction.category}}" tooltip="{{transaction.category}}"></p></td>
+                        <td class="icon"><p class="{% if not transaction.category or not transaction.category.icon_id %}simple-budget{% else %}{{transaction.category.get_icon}}{% endif %}" title="{{transaction.category}}" tooltip="{{transaction.category}}"></p></td>
                         <td class="description"><a href="{% url 'update_transaction' transaction.id %}">{{transaction.description}}</a></td>
                         <td class="amount"><span class="badge badge-pill {% if not transaction.is_spending %} badge-success{% else %} badge-danger{% endif %}">{{transaction.amount}} €</span></td>
                     </tr>

@@ -1,0 +1,95 @@
+{% extends "frame.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p class="danger"><b>Attention!</b></p>
+                    <p>Are you sure you want to permanently delete this category?</p>
+                    <p>All transactions that have this category selected, will instead receive the
+                        default-category after this operation.</p>
+                    <p>Deletion cannot be undone!</p>
+                </div>
+                <div class="modal-footer">
+                    <form class="delete_category" action="" method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form delete_form %}
+                        <input type="hidden" name="category_id" value="">
+                        <button type="submit" class="btn btn-danger" name="delete-category">Delete Category</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No, keep it.</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<h2>Categories</h2>
+
+<table class="table table-striped categories">
+    <thead>
+        <tr>
+            <th class="text-left">Icon</th>
+            <th class="text-left">Name</th>
+            <th class="text-left"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in all_categories %}
+                <tr class="category" data-category-id="{{category.id}}">
+                    <td class="icon">
+                        <p class="{{ category.get_icon }}"></p>
+                        <select class="select-icon" data-category-id="{{category.id}}">
+                            {% for icon in all_icons %}
+                                <option value="{{ icon.1 }}" {% if icon.1 == category.get_icon %}selected{% endif %}>{{ icon.0 }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td class="name">
+                        <p>{{category.name}}</p>
+                        <input class="input-name" type="text" data-category-id="{{category.id}}" value="{{ category.name }}">
+                    </td>
+                    <td class="edit text-right">
+                        <button class="save btn btn-primary btn-sm" data-category-id="{{category.id}}" name="update-category"><span class="oi oi-check"></span> Save</button>
+                        <button class="edit btn btn-primary btn-sm" data-category-id="{{category.id}}"><span class="oi oi-pencil"></span> Edit</button>
+                        <button class="stop-edit btn btn-danger btn-sm" data-category-id="{{category.id}}"><span class="oi oi-circle-x"></span> Close</button>
+                        <button class="delete btn btn-danger btn-sm" data-category-id="{{category.id}}" data-toggle="modal" data-target="#deleteCategoryModal"><span class="oi oi-delete"></span> Delete</button>
+                    </td>
+                </tr>
+        {% endfor %}
+            <tr class="add-category">
+                <td class="new-icon">
+                    <select class="select-icon" data-category-id="{{category.id}}">
+                        {% for icon in all_icons %}
+                            <option value="{{ icon.0 }}" {% if icon.1 == category.get_icon %}selected{% endif %}>{{ icon.0 }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td class="new-name">
+                    <input class="input-name" type="text">
+                </td>
+                <td class="new-category text-right">
+                    <button class="save btn btn-primary btn-sm" name="new-category"><span class="oi oi-check"></span> Add Category</button>
+                </td>
+            </tr>
+    </tbody>
+</table>
+
+<form class="update-category" action="{% url 'update_category' 0 %}" method="POST" style="display: none;">
+    {% csrf_token %}
+    {{ form }}
+    <input type="hidden" name="update-category" value="true">
+    <!-- <button type="submit" name="update-category"></button> -->
+</form>
+
+<form class="add-category" action="" method="POST" style="display: none">
+    {% csrf_token %}
+    {{ add_form }}
+    <input type="hidden" name="add-category" value="true">
+    <!-- <button type="submit" name="add-category"></button> -->
+</form>
+
+{% endblock %}
+

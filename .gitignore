@@ -2,3 +2,7 @@
 *.pyc
 
 db\.sqlite3
+
+savings/static/css/budget\.css
+
+\.vscode/

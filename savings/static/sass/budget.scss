@@ -149,6 +149,16 @@ table {
       font-weight: 700;
     }
   }
+  &.categories {
+    .category {
+      .select-icon,
+      .btn.save,
+      .btn.stop-edit,
+      .name input {
+        display: none;
+      }
+    }
+  }
 }
 
 #transactions_accordions {
