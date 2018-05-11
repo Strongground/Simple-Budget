@@ -26,6 +26,9 @@ urlpatterns = [
     # Add auth urls from Django
     path('user/', include('django.contrib.auth.urls')),
 
+    # Modify categories
+    path('categories/', views.categories, name='categories')
+
     # Redirect from savings/* to /*
     # re_path(r'savings/*', RedirectView.as_view(url='/'))
 ]

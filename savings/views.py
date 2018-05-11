@@ -5,10 +5,9 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 
-from .models import Account, Transaction, User, Profile
+from .models import Account, Transaction, Category, CATEGORY_ICON_CHOICES
 from .forms import QuickTransactionAdd, AddTransaction, UpdateTransaction, DeleteTransaction
 
-User = get_user_model()
 USER_PREFERENCE_ACCOUNT_TRANSACTIONS_DAYS = 100
 
 def index(request):
@@ -94,10 +93,8 @@ def quick_add_transaction(request):
         
     # Assume initial rendering
     else:
-        # Get default account if authenticated user
-        if request.user.is_authenticated:
-            initial_account = request.user.profile.default_account
-        else:
+        initial_account = request.user.profile.default_account
+        if not initial_account:
             # Get account the user was before entering form, if any
             if 'HTTP_REFERER' in request.META:
                 referer_url = request.META['HTTP_REFERER']
@@ -112,7 +109,7 @@ def quick_add_transaction(request):
             'initial_account_type': type(initial_account)
         }
         return render(request, 'savings/quick_add_transaction.html', context)
-    
+
 def add_transaction(request):
     # Assume submitted form, validate
     if request.method == 'POST':
@@ -146,6 +143,19 @@ def add_transaction(request):
             'form': AddTransaction,
         }
         return render(request, 'savings/add_transaction.html', context)
+
+def categories(request):
+    if request.method == 'POST':
+        messages.add_message(request, messages.SUCCESS, 'Successfully submitted form!', extra_tags='alert')
+        return HttpResponseRedirect(reverse('categories'))
+     # Assume submitted form
+    # Assume initial rendering
+    else:
+        context = {
+            'all_categories': Category.objects.all(),
+            'all_icons': CATEGORY_ICON_CHOICES
+        }
+        return render(request, 'savings/categories.html', context)
 
 def get_transactions_to_show_in_account(account_id):
     end_date = date.today()

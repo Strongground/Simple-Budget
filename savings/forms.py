@@ -1,6 +1,6 @@
 from datetime import date
 from django import forms
-from .models import Category, Account, Transaction
+from .models import Category, Account, Transaction, CATEGORY_ICON_CHOICES
 
 TRANSACTION_RECUR_REPEAT_DATES = (
     (1,'1'), (2,'2'), (3,'3'), (4,'4'), (5,'5'), (6,'6'), (7,'7'), (8,'8'),
@@ -72,5 +72,4 @@ class UpdateTransaction(forms.ModelForm):
         fields = ['account', 'description', 'is_spending', 'amount', 'category', 'date', 'recurring', 'repeat_time']
 
 class DeleteTransaction(forms.Form):
-    # delete = forms.BooleanField(initial=False, required=False, widget=forms.HiddenInput)
     pass
