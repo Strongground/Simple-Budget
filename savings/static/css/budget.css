@@ -137,6 +137,19 @@ table p {
   margin: 0;
 }
 
+table.accounts .name img {
+  float: left;
+  margin-right: 10px;
+}
+
+table.accounts .name span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
+  max-width: 60%;
+}
+
 table.transactions {
   margin-bottom: 30px;
 }
@@ -216,7 +229,7 @@ form.quick_add_transaction .btn, form.add_transaction .btn, form.update_transact
     max-width: 200px;
   }
   table.categories td:last-child {
-    max-width: 70px;
+    max-width: 80px;
   }
   table.categories td.edit button {
     border-radius: 50%;

@@ -1,0 +1,14 @@
+{% extends "frame.html" %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+    <h1>My Profile</h1>
+    
+    <form class="profile" action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+    </form>
+
+{% endblock %}

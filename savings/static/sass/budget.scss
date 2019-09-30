@@ -128,6 +128,21 @@ table {
   p {
     margin: 0;
   }
+  &.accounts {
+    .name {
+      img {
+        float: left;
+        margin-right: 10px;
+      }
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        float: left;
+        max-width: 60%;
+      }
+    }
+  }
   &.transactions {
     margin-bottom: 30px;
     .badge.badge-pill {
@@ -222,7 +237,7 @@ form {
         max-width: 200px;
       }
       td:last-child {
-        max-width: 70px;
+        max-width: 80px;
       }
       td.edit {
         button {
