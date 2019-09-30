@@ -68,7 +68,7 @@ class Profile(models.Model):
 
 class Bank(models.Model):
     name = models.CharField(max_length=100)
-    logo = models.ImageField(default='static/images/bank_logos/default.png', upload_to='static/images/bank_logos/')
+    logo = models.ImageField(default='static/images/bank_logos/default.png', upload_to='bank_logos/')
     def __str__(self):
         return self.name
 
